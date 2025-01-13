@@ -33,10 +33,6 @@ function MainComponent() {
     function deleteItem(id) {
         setPublishedPosts(publishedPosts.filter((el) => el.id !== id));
     }
-    function showPost(id) {
-        let focusPost = publishedPosts.filter((el) => el.id === id)
-        //console.log(focusPost)
-    }
 
 
     return (
@@ -44,7 +40,7 @@ function MainComponent() {
             <main>
                 <div className="d-flex flex-wrap">
                     {publishedPosts.map((post) => (
-                        <CardComponent key={`card-${post.id}`} el={post} onDelete={deleteItem} showPost={showPost} />
+                        <CardComponent key={`card-${post.id}`} el={post} onDelete={deleteItem} />
                     ))}
 
                 </div>

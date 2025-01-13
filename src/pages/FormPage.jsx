@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 //import posts from "../data/posts";
-//import CheckTagComponent from "./CheckTagComponent";
+import CheckTagComponent from "../components/CheckTagComponent";
 //import TagList from "./TagList";
 
 // const initialPost = {
@@ -46,7 +46,7 @@ function FormPage() {
     //const [blogPosts, SetBlogPosts] = useState(posts)
     //const filteredPost = filterPot(posts, search)
     // const [postList, setPostList] = useState([]);
-    // const [checkedTagList, setCheckedTagList] = useState(
+    const [checkedTagList, setCheckedTagList] = useState([])
     //     newPost.tags.map((tag) => false)
     // );
     // const tagList = TagList()
@@ -55,8 +55,8 @@ function FormPage() {
 
     function handleImput(ev) {
         //alert(ev)
-        //let fakeNewPost = { ...myPost }
-        //fakeNewPost[ev.target.name] = ev.target.value;
+        let fakeNewPost = { ...myPost }
+        fakeNewPost[ev.target.name] = ev.target.value;
 
 
         let { type, name, value, checked } = ev.target;
@@ -64,18 +64,18 @@ function FormPage() {
         const VAL = type == "checkbox" ? checked : value;
         if (name != "tags") return setMyPost({ ...myPost, [KEY]: VAL });
         if (checked) {
-            console.log()
-            setMyPost({
-                ...myPost,
-                [KEY]: [myPost.tags, value],
-            });
+            console.log(ev.target.value)
+            // setMyPost({
+            //     ...myPost,
+            //     [KEY]: [myPost.tags, value],
+            // });
         } else if (!checked) {
-            const newTags = myPost.tags.filter((tag) => tag != value);
-            console.log(newTags)
-            setMyPost({ ...myPost, [KEY]: newTags });
+            // const newTags = myPost.tags.filter((tag) => tag != value);
+            // console.log(newTags)
+            // setMyPost({ ...myPost, [KEY]: newTags });
         }
 
-        const newTagsListChecked = checkedTagList.map((isChecked, index) => {
+        let newTagsListChecked = checkedTagList.map((isChecked, index) => {
             if (index == ev.target.getAttribute("tagindex")) {
                 return !isChecked;
             }
@@ -206,7 +206,7 @@ function FormPage() {
                 {/*post tag */}
                 <p className="form-title">New Post Tags</p>
                 <ul className="d-flex flex-wrap tag-list">
-                    {tagList.map((tag, index) => (
+                    {tags.map((tag, index) => (
 
                         < CheckTagComponent key={`tagOption-${index}`} tag={tag} handleImput={handleImput} />
                     ))}
