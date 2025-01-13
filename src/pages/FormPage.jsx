@@ -60,35 +60,35 @@ function FormPage() {
 
 
         let { type, name, value, checked } = ev.target;
-        // const KEY = name;
-        // const VAL = type == "checkbox" ? checked : value;
-        // if (name != "tags") return setMyPost({ ...myPost, [KEY]: VAL });
-        // if (checked) {
-        //     console.log()
-        //     setMyPost({
-        //         ...myPost,
-        //         [KEY]: [myPost.tags, value],
-        //     });
-        // } else if (!checked) {
-        //     const newTags = myPost.tags.filter((tag) => tag != value);
-        //     console.log(newTags)
-        //     setMyPost({ ...myPost, [KEY]: newTags });
-        // }
+        const KEY = name;
+        const VAL = type == "checkbox" ? checked : value;
+        if (name != "tags") return setMyPost({ ...myPost, [KEY]: VAL });
+        if (checked) {
+            console.log()
+            setMyPost({
+                ...myPost,
+                [KEY]: [myPost.tags, value],
+            });
+        } else if (!checked) {
+            const newTags = myPost.tags.filter((tag) => tag != value);
+            console.log(newTags)
+            setMyPost({ ...myPost, [KEY]: newTags });
+        }
 
-        // const newTagsListChecked = checkedTagList.map((isChecked, index) => {
-        //     if (index == ev.target.getAttribute("tagindex")) {
-        //         return !isChecked;
-        //     }
-        //     return isChecked;
+        const newTagsListChecked = checkedTagList.map((isChecked, index) => {
+            if (index == ev.target.getAttribute("tagindex")) {
+                return !isChecked;
+            }
+            return isChecked;
 
-        // });
+        });
 
-        // setCheckedTagList(newTagsListChecked);
-        // if (ev.target.type === "checkbox") {
-        //     value = ev.target.checked
-        // } else {
-        //     value = ev.target.value
-        // }
+        setCheckedTagList(newTagsListChecked);
+        if (ev.target.type === "checkbox") {
+            value = ev.target.checked
+        } else {
+            value = ev.target.value
+        }
 
         console.log(ev.target.type);
 
@@ -206,10 +206,10 @@ function FormPage() {
                 {/*post tag */}
                 <p className="form-title">New Post Tags</p>
                 <ul className="d-flex flex-wrap tag-list">
-                    {/* {tagList.map((tag, index) => (
+                    {tagList.map((tag, index) => (
 
                         < CheckTagComponent key={`tagOption-${index}`} tag={tag} handleImput={handleImput} />
-                    ))} */}
+                    ))}
 
                 </ul>
                 <br />
